@@ -34,16 +34,17 @@ public class DataInit {
             @Override
             @Transactional
             public void run(ApplicationArguments args) throws Exception {
+                List<Etage> etages = new ArrayList<>();
                 // Check if data already exists
                 if (etageRepository.count() == 0 && spotRepository.count() == 0) {
                     // Initialize Etages
-                    List<Etage> etages = new ArrayList<>();
                     for (int i = 0; i <= 4; i++) {
                         Etage etage = new Etage();
                         etage.setLabel("F" + i);
                         etages.add(etage);
                     }
                     etageRepository.saveAll(etages);
+
                     // Initialize Spots
                     List<Spot> spots = new ArrayList<>();
                     for (Etage etage : etages) {
@@ -54,6 +55,7 @@ public class DataInit {
                             spots.add(spot);
                         }
                     }
+
                     spotRepository.saveAll(spots);
                 }
             }

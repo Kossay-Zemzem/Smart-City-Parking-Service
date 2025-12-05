@@ -17,6 +17,6 @@ public class Spot {
     private ParkingSpotType type; // e.g., "normal", "VIP"
     private boolean isOccupied;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Etage etage;
 }

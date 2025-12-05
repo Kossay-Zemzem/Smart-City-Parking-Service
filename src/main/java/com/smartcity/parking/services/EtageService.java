@@ -1,5 +1,6 @@
 package com.smartcity.parking.services;
 
+import com.smartcity.parking.models.Etage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smartcity.parking.repository.EtageRepository;
@@ -13,6 +14,9 @@ public class EtageService {
         this.etageRepo = etageRepository;
     }
 
-    // TODO: Add business methods
+    public Etage getEtageById(Long id) {
+        return etageRepo.findById(id).orElse(null);
+    }
+
 }
 
