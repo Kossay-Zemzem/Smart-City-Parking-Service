@@ -18,5 +18,5 @@ public class Spot {
     private boolean isOccupied;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Parking parking;
+    private Etage etage;
 }
