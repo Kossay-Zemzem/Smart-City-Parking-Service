@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import com.smartcity.parking.services.ParkingService;
 
 @Controller
-public class ParkingController {
+public class ParkingController { //For now this controller will serve everything.
     private final ParkingService parkingService;
     private final EtageService etageService;
     private final SpotService spotService;

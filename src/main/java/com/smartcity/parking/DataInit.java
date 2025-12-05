@@ -1,6 +1,8 @@
 package com.smartcity.parking;
 
 import com.smartcity.parking.models.Etage;
+import com.smartcity.parking.models.EtatParking;
+import com.smartcity.parking.models.ParkingSpotType;
 import com.smartcity.parking.models.Spot;
 import com.smartcity.parking.repository.EtageRepository;
 import com.smartcity.parking.repository.EtageRepository;
@@ -36,7 +38,7 @@ public class DataInit {
             public void run(ApplicationArguments args) throws Exception {
                 List<Etage> etages = new ArrayList<>();
                 // Check if data already exists
-                if (etageRepository.count() == 0 && spotRepository.count() == 0) {
+//                if (etageRepository.count() == 0 && spotRepository.count() == 0) {
                     // Initialize Etages
                     for (int i = 0; i <= 4; i++) {
                         Etage etage = new Etage();
@@ -52,13 +54,15 @@ public class DataInit {
                             Spot spot = new Spot();
                             spot.setCode("A" + j);
                             spot.setEtage(etage);
+                            spot.setOccupied(new Random().nextBoolean());
+                            spot.setType(ParkingSpotType.VIP);
                             spots.add(spot);
                         }
                     }
 
                     spotRepository.saveAll(spots);
                 }
-            }
+//            }
         };
     }
 }
