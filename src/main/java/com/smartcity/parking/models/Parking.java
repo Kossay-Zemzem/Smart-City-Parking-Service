@@ -16,5 +16,8 @@ public class Parking {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String name;
+    private String code;
+    private String address;
+    private EtatParking etat;
+    private int totalCapacity;
 }
