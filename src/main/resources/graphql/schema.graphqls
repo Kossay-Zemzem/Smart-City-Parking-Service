@@ -1,8 +1,13 @@
-# GraphiQL -> http://localhost:8080/graphiql?path=/graphql
+# GraphiQL -> http://localhost:8083/graphiql?path=/graphql
 
 type Query {
     spotById(id: ID): Spot
     etageById(id: ID): Etage
+    emptySpots: [Etage]
+#    closestEmptySpot: Spot
+}
+type Mutation {
+    reserveSpot(Reservation: Reservation): Facture
 }
 
 enum ParkingSpotType {
@@ -22,4 +27,20 @@ type Etage{
     capacity: Int
     hasPayementKiosk: Boolean
     spots: [Spot]
+}
+
+type Facture{
+    refFacture: String
+    refClient: String
+    spot: Spot
+    etageLabel: String
+    durationInHours: Int
+    prixTTC: Float
+}
+
+input Reservation{
+    spotCode: String
+    etageLabel: String
+    durationInHours: Int
+    refClient: String
 }

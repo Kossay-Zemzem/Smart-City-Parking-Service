@@ -36,6 +36,7 @@ public class DataInit {
             @Override
             @Transactional
             public void run(ApplicationArguments args) throws Exception {
+                //NOTE : DO NOT ADD MORE THAN 10 FLOORS , F0 , F1 , F2 , ... F9 because ordering after that doens't work as expected
                 List<Etage> etages = new ArrayList<>();
                 // Check if data already exists
 //                if (etageRepository.count() == 0 && spotRepository.count() == 0) {

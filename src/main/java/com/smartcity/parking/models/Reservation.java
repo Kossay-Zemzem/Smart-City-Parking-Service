@@ -17,8 +17,13 @@ import java.time.LocalDateTime;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private Long id ;
+    private String spotCode ;
+    private String etageLabel ;
+    private Integer durationInHours ;
+    private String refClient ;
+
+
+
 
 }

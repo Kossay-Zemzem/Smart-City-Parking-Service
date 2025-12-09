@@ -1,15 +1,20 @@
 package com.smartcity.parking.controllers;
 
 import com.smartcity.parking.models.Etage;
+import com.smartcity.parking.models.Facture;
+import com.smartcity.parking.models.Reservation;
 import com.smartcity.parking.models.Spot;
 import com.smartcity.parking.services.EtageService;
 import com.smartcity.parking.services.SpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import com.smartcity.parking.services.ParkingService;
+
+import javax.swing.plaf.PanelUI;
+import java.util.List;
 
 @Controller
 public class ParkingController { //For now this controller will serve everything.
@@ -33,6 +38,22 @@ public class ParkingController { //For now this controller will serve everything
     public Etage etageById(@Argument Long id){
         return etageService.getEtageById(id);
     }
+
+    @QueryMapping
+    public List<Etage> emptySpots(){
+        return etageService.getEtagesWithEmptySpots();
+    }
+
+//    @QueryMapping
+//    public Spot closestEmptySpot(){
+//        return parkingService.getClosestEmptySpot();
+//    }
+
+    @MutationMapping
+    public Facture reserveSpot(@Argument Reservation Reservation){
+        return parkingService.reserveSpot(Reservation);
+    }
+
 
 }
 
