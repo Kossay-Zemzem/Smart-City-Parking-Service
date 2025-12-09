@@ -1,5 +1,6 @@
 package com.smartcity.parking.services;
 
+import com.smartcity.parking.models.Spot;
 import org.springframework.stereotype.Service;
 import com.smartcity.parking.repository.SpotRepository;
 
@@ -13,5 +14,9 @@ public class SpotService {
     }
 
     // TODO: Add business methods
+
+    public Spot getSpotById(Long id) {
+        return spotRepo.findById(id).orElse(null);
+    }
 }
 

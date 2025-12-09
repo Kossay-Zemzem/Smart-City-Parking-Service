@@ -19,7 +19,7 @@ public class Etage {
     private int capacity;
     private boolean hasPaymentKiosk; //vrai si il y a une borne de paiement à cet étage
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "etage", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Spot> spots;
 
 }

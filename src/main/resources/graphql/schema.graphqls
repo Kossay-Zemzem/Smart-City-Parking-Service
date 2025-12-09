@@ -1,0 +1,25 @@
+# GraphiQL -> http://localhost:8080/graphiql?path=/graphql
+
+type Query {
+    spotById(id: ID): Spot
+    etageById(id: ID): Etage
+}
+
+enum ParkingSpotType {
+    NORMAL,
+    VIP
+}
+type Spot{
+    id: ID
+    code: String
+    type: ParkingSpotType
+    isOccupied: Boolean
+}
+
+type Etage{
+    id: ID
+    label: String
+    capacity: Int
+    hasPayementKiosk: Boolean
+    spots: [Spot]
+}

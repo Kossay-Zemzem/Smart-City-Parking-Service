@@ -14,9 +14,10 @@ public class Spot {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String code; // e.g., "A1", "B2"
+    @Enumerated(EnumType.STRING)
     private ParkingSpotType type; // e.g., "normal", "VIP"
     private boolean isOccupied;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Parking parking;
+    @ManyToOne
+    private Etage etage;
 }
