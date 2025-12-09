@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EtageRepository extends JpaRepository<Etage, Long> {
-    Optional<Etage> findByLabel(String label);
+    Etage findByLabel(String label);
     //Return all etages ordered by their level ascending
     List<Etage> findAllByOrderByLabelAsc();
 }

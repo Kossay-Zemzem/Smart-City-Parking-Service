@@ -6,6 +6,9 @@ type Query {
     emptySpots: [Etage]
 #    closestEmptySpot: Spot
 }
+type Mutation {
+    reserveSpot(Reservation: Reservation): Facture
+}
 
 enum ParkingSpotType {
     NORMAL,
@@ -24,4 +27,20 @@ type Etage{
     capacity: Int
     hasPayementKiosk: Boolean
     spots: [Spot]
+}
+
+type Facture{
+    refFacture: String
+    refClient: String
+    spot: Spot
+    etageLabel: String
+    durationInHours: Int
+    prixTTC: Float
+}
+
+input Reservation{
+    spotCode: String
+    etageLabel: String
+    durationInHours: Int
+    refClient: String
 }

@@ -21,6 +21,10 @@ public class EtageService {
         return etageRepo.findById(id).orElse(null);
     }
 
+    public Etage getEtageByLabel(String label) {
+        return etageRepo.findByLabel(label) ;
+    }
+
     public List<Long> getAllEtageIds() {
         return etageRepo.findAll().stream().map(Etage::getId).toList();
     }
