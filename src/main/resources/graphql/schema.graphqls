@@ -3,6 +3,8 @@
 type Query {
     spotById(id: ID): Spot
     etageById(id: ID): Etage
+    emptySpots: [Etage]
+#    closestEmptySpot: Spot
 }
 
 enum ParkingSpotType {

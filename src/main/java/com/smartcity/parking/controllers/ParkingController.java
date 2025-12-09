@@ -7,9 +7,10 @@ import com.smartcity.parking.services.SpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import com.smartcity.parking.services.ParkingService;
+
+import java.util.List;
 
 @Controller
 public class ParkingController { //For now this controller will serve everything.
@@ -33,6 +34,16 @@ public class ParkingController { //For now this controller will serve everything
     public Etage etageById(@Argument Long id){
         return etageService.getEtageById(id);
     }
+
+    @QueryMapping
+    public List<Etage> emptySpots(){
+        return etageService.getEtagesWithEmptySpots();
+    }
+
+//    @QueryMapping
+//    public Spot closestEmptySpot(){
+//        return parkingService.getClosestEmptySpot();
+//    }
 
 }
 
