@@ -1,4 +1,4 @@
-# GraphiQL -> http://localhost:8080/graphiql?path=/graphql
+# GraphiQL -> http://localhost:8083/graphiql?path=/graphql
 
 type Query {
     spotById(id: ID): Spot
