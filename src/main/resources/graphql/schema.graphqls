@@ -3,8 +3,15 @@
 type Query {
     spotById(id: ID): Spot
     etageById(id: ID): Etage
+    #Queries to be called by the orchestrator-------------------
     emptySpots: [Etage]
-#    closestEmptySpot: Spot
+    getAllEtages: [Etage]
+    getAllResrervations: [ReservationData]
+    getReservationsByRefClient(refClient: String): [ReservationData]
+    spotByCode(codeSpot: String,labelEtage: String): Spot
+    EtageByLabel(labelEtage: String): Etage
+
+    #    closestEmptySpot: Spot #TODO
 }
 type Mutation {
     reserveSpot(Reservation: Reservation): Facture
@@ -14,6 +21,7 @@ enum ParkingSpotType {
     NORMAL,
     VIP
 }
+
 type Spot{
     id: ID
     code: String
@@ -29,6 +37,15 @@ type Etage{
     spots: [Spot]
 }
 
+#TODO implement this , but will need to affect the entire reserveSpot chain in three serices
+#type Parking{
+#    id: ID
+#    code: String
+#    address: String
+#    etat: EtatParking
+#    etages: [Etage]
+#}
+
 type Facture{
     refFacture: String
     refClient: String
@@ -39,6 +56,13 @@ type Facture{
 }
 
 input Reservation{
+    spotCode: String
+    etageLabel: String
+    durationInHours: Int
+    refClient: String
+}
+
+type ReservationData{
     spotCode: String
     etageLabel: String
     durationInHours: Int

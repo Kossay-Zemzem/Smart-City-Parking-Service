@@ -17,11 +17,13 @@ public class ParkingService {
     private final ParkingRepository parkingRepo;
     private final EtageRepository etageRepo;
     private final SpotService spotService;
+    private final ReservationService reservationService;
 
-    public ParkingService(ParkingRepository parkingRepository, EtageRepository etageRepo, SpotService spotService) {
+    public ParkingService(ParkingRepository parkingRepository, EtageRepository etageRepo, SpotService spotService, ReservationService reservationService) {
         this.parkingRepo = parkingRepository;
         this.etageRepo = etageRepo;
         this.spotService = spotService;
+        this.reservationService = reservationService;
     }
 
     public Spot getClosestEmptySpot() { //To revise later
@@ -57,6 +59,8 @@ public class ParkingService {
         facture.setRefClient(reservation.getRefClient());
         facture.setRefFacture("FACT-PARK-" + System.currentTimeMillis());
 //        parkingRepo.save(facture); TODO save facture temporarly somewhere
+        //Enregistrer la reservation
+        reservationService.recordReservation(reservation);
         return facture;
     }
 
@@ -67,4 +71,5 @@ public class ParkingService {
             return durationInHours * PRIX_HEURE_BASE;
         }
     }
+
 }

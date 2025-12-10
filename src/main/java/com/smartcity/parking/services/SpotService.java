@@ -43,5 +43,9 @@ public class SpotService {
     public void updateSpot(Spot spot) {
         spotRepo.save(spot);
     }
+
+    public Spot getSpotByCode(String code) {
+            return spotRepo.findByCode(code);
+    }
 }
 

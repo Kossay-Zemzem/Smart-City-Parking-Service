@@ -5,6 +5,7 @@ import com.smartcity.parking.models.Spot;
 
 public interface SpotRepository extends JpaRepository<Spot, Long> {
     Spot findFirstByCode(String code);
+    Spot findByCode(String code);
 
 }
 

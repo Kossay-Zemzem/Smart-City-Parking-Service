@@ -5,6 +5,7 @@ import com.smartcity.parking.models.Facture;
 import com.smartcity.parking.models.Reservation;
 import com.smartcity.parking.models.Spot;
 import com.smartcity.parking.services.EtageService;
+import com.smartcity.parking.services.ReservationService;
 import com.smartcity.parking.services.SpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -19,11 +20,13 @@ import java.util.List;
 @Controller
 public class ParkingController { //For now this controller will serve everything.
     private final ParkingService parkingService;
+    private final ReservationService reservationService;
     private final EtageService etageService;
     private final SpotService spotService;
 
     @Autowired
-    public ParkingController(ParkingService parkingService, SpotService spotService, EtageService etageService) {
+    public ParkingController(ParkingService parkingService, ReservationService reservationService, SpotService spotService, EtageService etageService) {
+        this.reservationService = reservationService;
         this.etageService = etageService;
         this.spotService = spotService;
         this.parkingService = parkingService;
@@ -35,8 +38,24 @@ public class ParkingController { //For now this controller will serve everything
     }
 
     @QueryMapping
+    public Spot spotByCode(@Argument("codeSpot") String codeSpot, @Argument("labelEtage") String labelEtage){
+        return spotService.findSpot(codeSpot,labelEtage);
+    }
+
+
+    @QueryMapping
     public Etage etageById(@Argument Long id){
         return etageService.getEtageById(id);
+    }
+
+    @QueryMapping
+    public Etage EtageByLabel(@Argument String labelEtage){
+        return etageService.getEtageByLabel(labelEtage);
+    }
+
+    @QueryMapping
+    public List<Etage> getAllEtages(){
+        return etageService.getAllEtages();
     }
 
     @QueryMapping
@@ -49,10 +68,22 @@ public class ParkingController { //For now this controller will serve everything
 //        return parkingService.getClosestEmptySpot();
 //    }
 
+    @QueryMapping
+    public List<Reservation> getReservationsByRefClient(@Argument String refClient){
+        return reservationService.getReservationsByRefClient(refClient);
+    }
+
+    @QueryMapping
+    public List<Reservation> getAllResrervations(){
+        return reservationService.getAllReservations();
+    }
+
     @MutationMapping
     public Facture reserveSpot(@Argument Reservation Reservation){
         return parkingService.reserveSpot(Reservation);
     }
+
+
 
 
 }
