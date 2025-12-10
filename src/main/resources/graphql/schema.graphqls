@@ -5,7 +5,7 @@ type Query {
     etageById(id: ID): Etage #DONE
     emptySpots: [Etage] #DONE
     getAllEtages: [Etage] #DONE
-    getReservationsByRefClient(refClient: String): [Facture] #TODO 3
+    getReservationsByRefClient(refClient: String): [ReservationData] #DONE
     spotByCode(codeSpot: String,labelEtage: String): Spot #DONE
     EtageByLabel(labelEtage: String): Etage #DONE
     #    closestEmptySpot: Spot #TODO 4
@@ -53,6 +53,13 @@ type Facture{
 }
 
 input Reservation{
+    spotCode: String
+    etageLabel: String
+    durationInHours: Int
+    refClient: String
+}
+
+type ReservationData{
     spotCode: String
     etageLabel: String
     durationInHours: Int
