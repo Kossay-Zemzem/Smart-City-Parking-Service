@@ -1,15 +1,17 @@
 # GraphiQL -> http://localhost:8083/graphiql?path=/graphql
 
 type Query {
-    spotById(id: ID): Spot #DONE
-    etageById(id: ID): Etage #DONE
-    emptySpots: [Etage] #DONE
-    getAllEtages: [Etage] #DONE
-    getAllResrervations: [ReservationData] #DONE
-    getReservationsByRefClient(refClient: String): [ReservationData] #DONE
-    spotByCode(codeSpot: String,labelEtage: String): Spot #DONE
-    EtageByLabel(labelEtage: String): Etage #DONE
-    #    closestEmptySpot: Spot #TODO 4
+    spotById(id: ID): Spot
+    etageById(id: ID): Etage
+    #Queries to be called by the orchestrator-------------------
+    emptySpots: [Etage]
+    getAllEtages: [Etage]
+    getAllResrervations: [ReservationData]
+    getReservationsByRefClient(refClient: String): [ReservationData]
+    spotByCode(codeSpot: String,labelEtage: String): Spot
+    EtageByLabel(labelEtage: String): Etage
+
+    #    closestEmptySpot: Spot #TODO
 }
 type Mutation {
     reserveSpot(Reservation: Reservation): Facture
