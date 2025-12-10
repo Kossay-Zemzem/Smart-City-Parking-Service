@@ -73,6 +73,11 @@ public class ParkingController { //For now this controller will serve everything
         return reservationService.getReservationsByRefClient(refClient);
     }
 
+    @QueryMapping
+    public List<Reservation> getAllResrervations(){
+        return reservationService.getAllReservations();
+    }
+
     @MutationMapping
     public Facture reserveSpot(@Argument Reservation Reservation){
         return parkingService.reserveSpot(Reservation);

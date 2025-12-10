@@ -5,6 +5,7 @@ type Query {
     etageById(id: ID): Etage #DONE
     emptySpots: [Etage] #DONE
     getAllEtages: [Etage] #DONE
+    getAllResrervations: [ReservationData] #DONE
     getReservationsByRefClient(refClient: String): [ReservationData] #DONE
     spotByCode(codeSpot: String,labelEtage: String): Spot #DONE
     EtageByLabel(labelEtage: String): Etage #DONE

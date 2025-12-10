@@ -22,6 +22,10 @@ public class ReservationService {
         return reservationRepo.findByRefClient(refClient);
     }
 
+    public List<Reservation> getAllReservations() {
+        return reservationRepo.findAll();
+    }
+
     // TODO: Add business methods
 }
 
