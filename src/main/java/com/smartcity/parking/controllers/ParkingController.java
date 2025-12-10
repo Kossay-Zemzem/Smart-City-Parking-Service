@@ -35,8 +35,24 @@ public class ParkingController { //For now this controller will serve everything
     }
 
     @QueryMapping
+    public Spot spotByCode(@Argument("codeSpot") String codeSpot, @Argument("labelEtage") String labelEtage){
+        return spotService.findSpot(codeSpot,labelEtage);
+    }
+
+
+    @QueryMapping
     public Etage etageById(@Argument Long id){
         return etageService.getEtageById(id);
+    }
+
+    @QueryMapping
+    public Etage EtageByLabel(@Argument String labelEtage){
+        return etageService.getEtageByLabel(labelEtage);
+    }
+
+    @QueryMapping
+    public List<Etage> getAllEtages(){
+        return etageService.getAllEtages();
     }
 
     @QueryMapping
@@ -49,10 +65,17 @@ public class ParkingController { //For now this controller will serve everything
 //        return parkingService.getClosestEmptySpot();
 //    }
 
+//    @QueryMapping
+//    public List<Reservation> getReservationsByRefClient(@Argument String refClient){
+//        return parkingService.getReservationsByRefClient(refClient);
+//    }
+
     @MutationMapping
     public Facture reserveSpot(@Argument Reservation Reservation){
         return parkingService.reserveSpot(Reservation);
     }
+
+
 
 
 }

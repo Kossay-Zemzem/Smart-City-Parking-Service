@@ -1,10 +1,14 @@
 # GraphiQL -> http://localhost:8083/graphiql?path=/graphql
 
 type Query {
-    spotById(id: ID): Spot
-    etageById(id: ID): Etage
-    emptySpots: [Etage]
-#    closestEmptySpot: Spot
+    spotById(id: ID): Spot #DONE
+    etageById(id: ID): Etage #DONE
+    emptySpots: [Etage] #DONE
+    getAllEtages: [Etage] #DONE
+    getReservationsByRefClient(refClient: String): [Facture] #TODO 3
+    spotByCode(codeSpot: String,labelEtage: String): Spot #DONE
+    EtageByLabel(labelEtage: String): Etage #DONE
+    #    closestEmptySpot: Spot #TODO 4
 }
 type Mutation {
     reserveSpot(Reservation: Reservation): Facture
@@ -14,6 +18,7 @@ enum ParkingSpotType {
     NORMAL,
     VIP
 }
+
 type Spot{
     id: ID
     code: String
@@ -28,6 +33,15 @@ type Etage{
     hasPayementKiosk: Boolean
     spots: [Spot]
 }
+
+#TODO implement this , but will need to affect the entire reserveSpot chain in three serices
+#type Parking{
+#    id: ID
+#    code: String
+#    address: String
+#    etat: EtatParking
+#    etages: [Etage]
+#}
 
 type Facture{
     refFacture: String

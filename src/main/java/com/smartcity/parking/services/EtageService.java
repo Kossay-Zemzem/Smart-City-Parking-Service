@@ -37,5 +37,9 @@ public class EtageService {
         etages.removeIf(etage -> etage.getSpots().isEmpty());
         return etages;
     }
+
+    public List<Etage> getAllEtages() {
+            return etageRepo.findAll();
+    }
 }
 
