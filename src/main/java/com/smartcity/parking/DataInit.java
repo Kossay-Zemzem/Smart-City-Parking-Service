@@ -47,6 +47,14 @@ public class DataInit {
                 for (int i = 0; i <= 4; i++) {
                     Etage etage = new Etage();
                     etage.setLabel("F" + i);
+                    etage.setHasPaymentKiosk(i % 2 == 0); // Payment kiosk on even floors
+                    if (i == 0) {
+                        etage.setCapacity(50); // Ground floor has higher capacity
+                    } else if (i == 4) {
+                        etage.setCapacity(30); // Top floor has lower capacity
+                    } else {
+                        etage.setCapacity(40); // Standard capacity for other floors
+                    }
                     etages.add(etage);
                 }
                 etageRepository.saveAll(etages);

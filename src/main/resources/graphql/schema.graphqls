@@ -33,7 +33,7 @@ type Etage{
     id: ID
     label: String
     capacity: Int
-    hasPayementKiosk: Boolean
+    hasPaymentKiosk: Boolean
     spots: [Spot]
 }
 
