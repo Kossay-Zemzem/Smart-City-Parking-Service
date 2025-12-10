@@ -1,22 +1,36 @@
-# GraphiQL -> http://localhost:8083/graphiql?path=/graphql
-
+#Queries========================================================
 type Query {
+    #Get spot by ID
     spotById(id: ID): Spot
-    etageById(id: ID): Etage
-    #Queries to be called by the orchestrator-------------------
-    emptySpots: [Etage]
-    getAllEtages: [Etage]
-    getAllResrervations: [ReservationData]
-    getReservationsByRefClient(refClient: String): [ReservationData]
+
+    #Get spot by code and etage label
     spotByCode(codeSpot: String,labelEtage: String): Spot
+
+    #Get empty spots only
+    emptySpots: [Etage]
+
+    #Get etage by ID
+    etageById(id: ID): Etage
+
+    #Get etage by its label
     EtageByLabel(labelEtage: String): Etage
 
-    #    closestEmptySpot: Spot #TODO
+    #Get all etages of the parking
+    getAllEtages: [Etage]
+
+    #Get all reservations
+    getAllResrervations: [ReservationData]
+
+    #Get reservations by client reference
+    getReservationsByRefClient(refClient: String): [ReservationData]
 }
+#Mutations========================================================
 type Mutation {
+    #Reserve a parking spot
     reserveSpot(Reservation: Reservation): Facture
 }
 
+#Types========================================================
 enum ParkingSpotType {
     NORMAL,
     VIP
@@ -36,15 +50,6 @@ type Etage{
     hasPaymentKiosk: Boolean
     spots: [Spot]
 }
-
-#TODO implement this , but will need to affect the entire reserveSpot chain in three serices
-#type Parking{
-#    id: ID
-#    code: String
-#    address: String
-#    etat: EtatParking
-#    etages: [Etage]
-#}
 
 type Facture{
     refFacture: String
