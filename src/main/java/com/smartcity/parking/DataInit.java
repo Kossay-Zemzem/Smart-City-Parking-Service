@@ -66,13 +66,16 @@ public class DataInit {
                         Spot spot = new Spot();
                         spot.setCode("A" + j);
                         spot.setEtage(etage);
+                        spot.setOccupied(new Random().nextBoolean());
+
                         if (j == 5 && etage.getLabel().equals("F2")) {
                             //Ensure that the spot A5 on floor F2 is always free a test reservation
                             spot.setOccupied(false);
-                        } else {
-                            spot.setOccupied(new Random().nextBoolean());
                         }
-                        spot.setOccupied(new Random().nextBoolean());
+                        if (j == 10 && etage.getLabel().equals("F2")) {
+                            //Ensure that the spot A10 on floor F2 is always free for testing
+                            spot.setOccupied(false);
+                        }
                         spot.setType(ParkingSpotType.VIP);
                         spots.add(spot);
                     }
@@ -82,7 +85,7 @@ public class DataInit {
 
                 //Add a n exising reservation for testing purposes
                 Reservation reservation = new Reservation();
-                reservation.setRefClient("CLIENT-001");
+                reservation.setRefClient("CLIENT-007");
                 //spot A5 on floor F2 is guranteed to be free for this test reservation
                 reservation.setSpotCode("A5");
                 reservation.setEtageLabel("F2");
